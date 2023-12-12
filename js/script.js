@@ -5,18 +5,13 @@
 // Bonus
 // Far comparire gli indirizzi email solamente quando sono stati tutti generati.
 
-
-
-
-
-
 const { createApp } = Vue;
 
 createApp({
     data() {
         return {
             // Var Dove vado a salvare il valore della risposta ottenuta dal JSON dell'API
-            email:''
+            emails:[]
         }
     },
 
@@ -24,11 +19,13 @@ createApp({
 
         // Funzione Get Response da API creata da Boolean per Generare email Random
         getEmail(){
+            for(let i = 0; i < 10; i++) {
             axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then(
                 (response) =>{
-                console.log(response);
-                this.email = response.data.response
+                console.log(this.emails);
+                this.emails.push(response.data.response)
             });
+        }
         }
 
     },
